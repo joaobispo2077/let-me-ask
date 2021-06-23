@@ -1,19 +1,10 @@
+import { ButtonHTMLAttributes } from "react"
+import "../styles/button.scss";
 //rafc
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-import { useState } from "react"
-
-export const Button = () => {
-  const [counter, setCounter] = useState(0);
-
-  const handleIncrementCounter = () => {
-    setCounter((prevCounter) =>{
-      const newValue = prevCounter + 1;
-      console.log(newValue);    
-      return newValue
-    });
-  }
-
+export const Button = (props: IButtonProps) => {
   return (
-    <button onClick={handleIncrementCounter}>{counter}</button>
+    <button {...props} className="button" />
   )
 }
