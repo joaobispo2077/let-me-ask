@@ -11,7 +11,7 @@
       align-items: center;
 
       > img {
-        max-width: 45px;
+        max-height: 45px;
       }
     }
   }
@@ -46,12 +46,13 @@
     form {
       textarea {
         width: 100%;
-        border: 0px;
+        border: 0;
         padding: 16px;
+        border-radius: 8px;
         background: #fefefe;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
-        min-height:130px;
+        min-height: 130px;
       }
 
       .form-footer {
