@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 export function Home() {
-  const { signInWithGoogle, user } = useAuth();
+  const { signInWithGoogle } = useAuth();
   const history = useHistory();
 
   const handleCreateRoom = async () => {
