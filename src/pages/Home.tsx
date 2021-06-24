@@ -8,7 +8,7 @@ import { Button } from '../components/Button';
 import '../styles/auth.scss';
 import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../App';
+import { AuthContext } from '../contexts/auth';
 
 export function Home() {
   const { signInWithGoogle, user } = useContext(AuthContext);
