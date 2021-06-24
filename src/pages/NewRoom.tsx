@@ -1,5 +1,5 @@
 import { FormEvent, ChangeEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
@@ -12,13 +12,16 @@ import '../styles/auth.scss';
 
 export function NewRoom() {
   const { user } = useAuth();
+
+  const history = useHistory();
+
   const [newRoom, setNewRoom] = useState('');
 
   const handleCreateRoom = async (event: FormEvent) => {
     event.preventDefault();
     console.log('initiating room creation...');
     
-    if(newRoom.trim() !== "") {
+    if(newRoom.trim() === "") {
       console.log('room blocked is:', newRoom.trim());
       
       return;
@@ -32,6 +35,8 @@ export function NewRoom() {
       title: newRoom,
       authorId: user?.id,
     });
+
+    history.push(`/rooms/${firebaseRoom.key}`);
   }
 
   // const handleTypeRoomName = (event: ChangeEvent<HTMLInputElement>) => {
