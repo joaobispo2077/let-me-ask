@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
@@ -14,6 +14,7 @@ type RoomParams = {
 }
 
 export const AdminRoom = () => {
+  const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
 
@@ -25,6 +26,16 @@ export const AdminRoom = () => {
     }
   }
 
+  const handleEndRoom = async () => {
+    if(window.confirm("Tem certeza que você deseja encerrar esta sala?")) {
+      await database.ref(`rooms/${roomId}`).update({
+        endedAt: new Date()
+      });
+
+      history.push('/');
+    }
+  }
+
   return (
     <div id="page-room">
       <header>
@@ -32,7 +43,7 @@ export const AdminRoom = () => {
           <img src={logoImg} alt="let me ask" />
           <div>
             <RoomCode code={roomId}/>
-            <Button isOutlined>Encerrar sala</Button>
+            <Button onClick={handleEndRoom} isOutlined>Encerrar sala</Button>
           </div>
         </div>
       </header>

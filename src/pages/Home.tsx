@@ -12,14 +12,16 @@ import '../styles/auth.scss';
 import { database } from '../services/firebase';
 
 export function Home() {
-  const { signInWithGoogle } = useAuth();
-
   const history = useHistory();
+  const { user, signInWithGoogle } = useAuth();
+
 
   const [roomCode, setRoomCode] = useState('');
 
   const handleCreateRoom = async () => {
-    await signInWithGoogle();
+    if(!user) {
+      await signInWithGoogle();
+    }
 
     history.push('/rooms/new');
   }
@@ -34,7 +36,12 @@ export function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if(!(roomRef).exists()) {
-      alert('Romm does not exists.');
+      alert('Room does not exists.');
+      return;
+    }
+
+    if(roomRef.val().endedAt) {
+      alert('Room already closed.');
       return;
     }
 
