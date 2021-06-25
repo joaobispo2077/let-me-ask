@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
@@ -50,7 +50,6 @@ export const Room = () => {
 
   const handleLikeQuestion = async (questionId: string, likeId: string | null) => {
     if(likeId) {
-
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
     } else {
 
@@ -88,7 +87,7 @@ export const Room = () => {
               <img src={user.avatar} alt={user.name} />
               <span>{user.name}</span>
             </div>
-            ): ( <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>)}
+            ): ( <span>Para enviar uma pergunta, <Link to="/">faça seu login</Link>.</span>)}
            
             <Button type="submit">Enviar pergunta</Button>
           </div>
