@@ -1,3 +1,12 @@
+# Next Level =>
+
+- Responsividade
+- Tema dark
+- Versão PWA
+- CSS lib (styled components)
+- ESLint & Prettier
+- Beauty README
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

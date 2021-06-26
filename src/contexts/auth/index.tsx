@@ -22,7 +22,7 @@ export const AuthContext = createContext({} as AuthContextType);
 export function AuthContextProvider (props: AuthContextProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
-  const handleRecoverUser = (user: firebase.User | null) => {
+  const handleRecoverUser = async (user: firebase.User | null) => {
     if (user) {
       const { displayName, photoURL, uid } = user;
   
@@ -44,7 +44,7 @@ export function AuthContextProvider (props: AuthContextProviderProps) {
 
     console.log('logIn',result);
 
-    handleRecoverUser(result.user);   
+    await handleRecoverUser(result.user);
   }
 
   useEffect(() => {
