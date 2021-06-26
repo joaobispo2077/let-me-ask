@@ -56,6 +56,9 @@ export function useRoom (roomId: string) {
         };
       });
 
+      console.log('room name',databaseRoom);
+      
+
       setQuestions(parsedQuestions);
       setTitle(databaseRoom.title);
     });
